@@ -18,7 +18,7 @@ while menu && read -rp "$prompt" nums && [[ "$nums" ]]; do
         [[ "$num" != *[![:digit:]]* ]] &&
         (( num > 0 && num <= ${#options[@]} )) ||
         { msg="Invalid option: $num"; continue; }
-        ((num--)); msg="${options[num]} was ${choices[num]:+un}checked"
+        ((num--)); msg="${options[num]} was ${choices[num]:+un}checked" # TODO: Fix feedback for space-separated input
         [[ "${choices[num]}" ]] && choices[num]="" || choices[num]="+"
     done < <(echo $nums |sed "s/ /\n/g")
 done
